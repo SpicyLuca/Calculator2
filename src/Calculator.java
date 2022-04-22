@@ -13,13 +13,21 @@ public class Calculator {
 		Scanner input = new Scanner(System.in);
 		input.useLocale(Locale.US);
 		
-		System.out.println("Choose an operator : +, -, *, /, %");
-		operator = input.next().charAt(0);
-		
 		System.out.println("Enter a first number");
+		/*do {
+			
+		}while();*/
 		n1 = input.nextBigDecimal();
-				
-		System.out.println("Enter a first number");
+		
+
+		do {
+			System.out.println("Choose an operator : +, -, *, /, %");
+			operator = input.next().charAt(0);
+		}while(!isAnOperator(operator));
+
+			
+		
+		System.out.println("Enter a second number");
 		n2 = input.nextBigDecimal();
 		
 		switch(operator) {
@@ -55,6 +63,43 @@ public class Calculator {
 		}
 		
 			
+	}
+	
+	private boolean isIntegerValue(BigDecimal bd) {
+	    boolean ret;
+	    
+	    try {
+	        bd.toBigIntegerExact();
+	        ret = true;
+	    } catch (ArithmeticException ex) {
+	        ret = false;
+	    }
+
+	    return ret;
+	}
+
+	private boolean isAnOperator(char operator) {
+		switch(operator) {
+		case '+':
+			return true;
+		
+		case '-':
+			return true;
+		
+		case '*':
+			return true;
+		
+		case '/':
+			return true;		
+		
+		case '%':
+			return true;
+		
+		default:
+			System.out.println("Invalid operator!");
+			return false;
+		}
+	
 	}
 
 	public static void main(String[] args) {
